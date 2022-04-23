@@ -17,6 +17,12 @@
   },
   "homepage": "https://github.com/michaeltreat/DoYouEvenSteam4#readme",
   "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
     "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.15"
   }
 }
