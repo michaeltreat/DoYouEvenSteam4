@@ -12,28 +12,30 @@ app.get('/', (req, res) => {
     res.send('hello world!')
 });
 
+async function getSteamID(name){
+    let response = await axios.get(`${_API_}/ISteamUser/ResolveVanityURL/v0001/?key=${KEY}&vanityurl=${name}`)
+    return response.data.response.steamid
+}
+
+async function getSteamUserData(steamId){
+    let response = await axios.get(`${_API_}/IPlayerService/GetOwnedGames/v0001/?key=${KEY}&steamid=${steamId}&format=json&include_appinfo=1`)
+    return response.data
+}
+
+
 // Get user ID from vanity name
 app.get('/steamuser/steamname/:name', (req, res) => {
-    axios.get(`${_API_}/ISteamUser/ResolveVanityURL/v0001/?key=${KEY}&vanityurl=${req.params.name}`)
-    .then( response => {
-        res.send(response.data.response.steamid)
-    })
+    getSteamID(req.params.name)
+    .then(steamId => res.send(steamId)) 
+    .catch(err => res.send(err))
 })
 
+// real sample id :76561198009965051
 // Get user data
 app.get('/steamuser/steamid/:steamId', (req,res) =>{
-    let userInput = req.params.userInput
-    // need to validate user input
-    // valid Sample id :76561198009965051
-    sampleInput ='76561198009965051'
-
-    axios.get(`${_API_}/IPlayerService/GetOwnedGames/v0001/?key=${KEY}&steamid=${sampleInput}&format=json&include_appinfo=1`)
-    .then(response => {
-        console.log(response.data)
-        res.send(response.data)
-    }).catch(error =>{
-        res.send(error)
-    })
+    getSteamUserData(req.params.steamId)
+    .then(userData => res.send(userData))
+    .catch(err => res.send(err))
 })
 
 app.listen(port, () => {
