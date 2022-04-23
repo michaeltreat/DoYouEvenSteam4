@@ -1,0 +1,22 @@
+{
+  "name": "doyouevensteam4",
+  "version": "1.0.0",
+  "description": "4th iteration of DYES. Using this one to re-learn web-dev after 3 years working on low-level work.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaeltreat/DoYouEvenSteam4.git"
+  },
+  "author": "michaeltreat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaeltreat/DoYouEvenSteam4/issues"
+  },
+  "homepage": "https://github.com/michaeltreat/DoYouEvenSteam4#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
